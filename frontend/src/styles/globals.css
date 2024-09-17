@@ -1,0 +1,35 @@
+/* styles/globals.css */
+
+/* Define CSS variables for the theme */
+:root {
+  --font-family: 'Inter', sans-serif;
+  --font-size-base: 16px;
+  --color-primary: #3c3c44;
+  --color-secondary: #737372;
+  --color-background: #282828;
+  --color-text: #ffffff;
+}
+
+/* Apply global styles */
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

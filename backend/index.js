@@ -1,7 +1,9 @@
 import express from 'express'
+import cors from 'cors'
 import mysql from 'mysql'
 
-const app = express()
+const app = express();
+const port = 8800;
 
 const db = mysql.createConnection({
   host: 'localhost',
@@ -9,6 +11,10 @@ const db = mysql.createConnection({
   password: 'password',
   database: 'task-management'
 })
+
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
 
 app.get("/tasks", (req, res) => {
   const query = "SELECT * FROM task"
@@ -28,6 +34,6 @@ app.post("/tasks", (req, res) => {
   })
 })
 
-app.listen(8800, () => {
+app.listen(port, () => {
   console.log('Connected to backend!')
 })

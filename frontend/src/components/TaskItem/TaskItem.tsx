@@ -7,9 +7,11 @@ import { checkMarkIcon, pencilIcon } from "@/assets/icons";
 
 import "./TaskItem.css";
 
-interface TaskItemProps {}
+interface TaskItemProps {
+  name: string;
+}
 
-export default function TaskItem({}: TaskItemProps) {
+export default function TaskItem({ name }: TaskItemProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isComplete, setIsComplete] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -31,6 +33,7 @@ export default function TaskItem({}: TaskItemProps) {
       />
       <input
         ref={inputRef}
+        value={name}
         className="inputField"
         type="text"
         onChange={(event) => {

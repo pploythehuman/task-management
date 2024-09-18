@@ -4,13 +4,17 @@
 :root {
   --font-family: 'Inter', sans-serif;
   --font-size-base: 16px;
-  --color-primary: #3c3c44;
+  --color-primary: #545456;
   --color-secondary: #737372;
   --color-background: #282828;
   --color-text: #ffffff;
 }
 
 /* Apply global styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: var(--font-family);
   font-size: var(--font-size-base);

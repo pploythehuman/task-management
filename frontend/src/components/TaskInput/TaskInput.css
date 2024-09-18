@@ -1,0 +1,29 @@
+/* src/components/TaskInput/TaskInput.css */
+
+.taskInputContainer {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  background-color: var(--color-primary);
+}
+
+.labelContainer {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.inputField {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  appearance: none;
+  background-color: inherit;
+  caret-color: #ffffff;
+  color: #ffffff;
+  font-size: 16px;
+}

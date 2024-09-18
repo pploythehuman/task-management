@@ -1,3 +1,2 @@
-export { TaskInput } from './TaskInput';
-export { TaskItem } from './TaskItem';
-
+export { default as TaskInput } from './TaskInput/TaskInput';
+export { default as TaskItem } from './TaskItem/TaskItem';

@@ -1,0 +1,20 @@
+/* src/components/TaskItem/TaskItem.css */
+
+.taskItemContainer {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--color-primary);
+}
+
+.taskItemButton {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  background-color: inherit;
+  cursor: pointer;
+}
+

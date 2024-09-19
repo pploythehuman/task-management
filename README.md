@@ -13,6 +13,14 @@
 </ol>
 System must be responsive across devices from iPhone SE to Desktop monitor.
 
+## Demo
+<img width="440" alt="Screenshot 2024-09-19 at 22 47 23" src="https://github.com/user-attachments/assets/5ebdd22c-dcc3-4f4a-9355-e9625c912da9">
+<img width="1728" alt="Screenshot 2024-09-19 at 22 47 13" src="https://github.com/user-attachments/assets/b230028d-6dc7-48bc-b21b-522a993b53cd">
+
+https://github.com/user-attachments/assets/8d0d1a3b-e8d6-4977-a790-280b30635459
+
+
+
 ## Getting Started
 
 ### Prerequisites

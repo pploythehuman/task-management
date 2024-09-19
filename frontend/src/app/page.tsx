@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { getTasks } from "@/services";
+import { createTask, getTasks } from "@/services";
 import { TaskInput, TaskItem } from "@/components";
 import { clipboardIcon } from "@/assets/icons";
 import { useEffect, useState } from "react";
@@ -10,8 +10,13 @@ import { Task } from "@/types";
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  const addTask = (task: string) => {
-    console.log("Add Task: ", task);
+  const addTask = async (task: string) => {
+    try {
+      const newTask = await createTask({ name: task });
+      setTasks((prevTasks) => [...prevTasks, newTask]);
+    } catch (error) {
+      console.error("Error creating task:", error);
+    }
   };
 
   useEffect(() => {

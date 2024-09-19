@@ -4,3 +4,6 @@ export interface Task {
   complete: boolean
 }
 
+export interface TaskCreationData {
+  name: string;
+}

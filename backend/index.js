@@ -1,6 +1,6 @@
-import express from 'express'
-import cors from 'cors'
-import mysql from 'mysql'
+import express from 'express';
+import cors from 'cors';
+import mysql from 'mysql';
 
 const app = express();
 const port = 8800;
@@ -10,7 +10,7 @@ const db = mysql.createConnection({
   user: 'root',
   password: 'password',
   database: 'task-management'
-})
+});
 
 app.use(express.json());
 
@@ -19,12 +19,12 @@ app.use(cors({
 }));
 
 app.get("/tasks", (req, res) => {
-  const query = "SELECT * FROM task"
+  const query = "SELECT * FROM task";
   db.query(query, (err, data) => {
-    if (err) return res.json(err)
-    return res.json(data)
-  })
-})
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
 
 app.get("/tasks/:id", (req, res) => {
   const taskId = req.params.id;
@@ -41,10 +41,10 @@ app.get("/tasks/:id", (req, res) => {
 });
 
 app.post("/tasks", (req, res) => {
-  const query = "INSERT INTO task (`name`) VALUES (?)"
+  const query = "INSERT INTO task (`name`) VALUES (?)";
   const values = [req.body.name];
 
-  db.query(query, [values], (err, result) => {
+  db.query(query, values, (err, result) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
@@ -59,8 +59,8 @@ app.post("/tasks", (req, res) => {
 
       res.status(201).json(data[0]);
     });
-  })
-})
+  });
+});
 
 app.put("/tasks/:id", (req, res) => {
   const taskId = req.params.id;
@@ -102,5 +102,5 @@ app.put("/tasks/:id", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log('Connected to backend!')
-})
+  console.log('Connected to backend!');
+});

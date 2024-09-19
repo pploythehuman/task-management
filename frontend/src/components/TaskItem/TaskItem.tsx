@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Task } from "@/types";
 import TaskItemButton from "./TaskItemButton";
 import IconButton from "../IconButton";
 import { checkMarkIcon, pencilIcon } from "@/assets/icons";
@@ -8,13 +9,20 @@ import { checkMarkIcon, pencilIcon } from "@/assets/icons";
 import "./TaskItem.css";
 
 interface TaskItemProps {
-  name: string;
+  task: Task;
+  onUpdateTask: (id: string, updatedTask: Partial<Task>) => void;
 }
 
-export default function TaskItem({ name }: TaskItemProps) {
+export default function TaskItem({ task, onUpdateTask }: TaskItemProps) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isComplete, setIsComplete] = useState(false);
+  const [isComplete, setIsComplete] = useState(task.complete);
   const [isEditing, setIsEditing] = useState(false);
+
+  const handleCompleteToggle = () => {
+    const value = !isComplete;
+    setIsComplete(value);
+    onUpdateTask(task.id, { complete: value });
+  };
 
   // Locate cursor at input when edit
   useEffect(() => {
@@ -25,15 +33,10 @@ export default function TaskItem({ name }: TaskItemProps) {
 
   return (
     <div className="taskItemContainer">
-      <TaskItemButton
-        value={isComplete}
-        onClick={() => {
-          setIsComplete(!isComplete);
-        }}
-      />
+      <TaskItemButton value={isComplete} onClick={handleCompleteToggle} />
       <input
         ref={inputRef}
-        value={name}
+        value={task.name}
         className="inputField"
         type="text"
         onChange={(event) => {

@@ -17,7 +17,7 @@ const createTask = async (taskData: TaskCreationData) => {
   return response.data;
 };
 
-const updateTask = async (taskId: string, taskData: Task) => {
+const updateTask = async (taskId: string, taskData: Partial<Task>) => {
   const response = await axios.put(`/api/tasks/${taskId}`, taskData);
   return response.data;
 };

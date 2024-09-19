@@ -21,14 +21,3 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Error creating task' }, { status: 500 });
   }
 }
-
-export async function PUT(request: Request) {
-  try {
-    const taskData = await request.json();
-    const { id, ...updateData } = taskData;
-    const response = await axios.put(`${BASE_URL}/${id}`, updateData);
-    return NextResponse.json(response.data);
-  } catch (error) {
-    return NextResponse.json({ error: 'Error updating task' }, { status: 500 });
-  }
-}

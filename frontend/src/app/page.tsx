@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { createTask, getTasks } from "@/services";
+import { createTask, getTasks, updateTask } from "@/services";
 import { TaskInput, TaskItem } from "@/components";
 import { clipboardIcon } from "@/assets/icons";
 import { useEffect, useState } from "react";
@@ -10,12 +10,23 @@ import { Task } from "@/types";
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  const addTask = async (task: string) => {
+  const handleAddTask = async (task: string) => {
     try {
       const newTask = await createTask({ name: task });
       setTasks((prevTasks) => [...prevTasks, newTask]);
     } catch (error) {
       console.error("Error creating task:", error);
+    }
+  };
+
+  const handleUpdateTask = async (id: string, updatedTask: Partial<Task>) => {
+    try {
+      const updated = await updateTask(id, updatedTask);
+      setTasks((prevTasks) =>
+        prevTasks.map((task) => (task.id === id ? updated : task))
+      );
+    } catch (error) {
+      console.error("Error updating task:", error);
     }
   };
 
@@ -52,12 +63,14 @@ export default function Home() {
           My tasks
         </h1>
 
-        <TaskInput onSubmit={addTask} />
+        <TaskInput onSubmit={handleAddTask} />
       </div>
       <div>
         <div>To do</div>
         {tasks.map((task, index) => {
-          return <TaskItem key={index} name={task.name} />;
+          return (
+            <TaskItem key={index} task={task} onUpdateTask={handleUpdateTask} />
+          );
         })}
       </div>
     </>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+
 import { validateInput } from "@/utils/helpers";
 import IconButton from "../IconButton/IconButton";
 import { plusIcon, rightArrowIcon } from "@/assets/icons";
@@ -17,7 +18,7 @@ export default function TaskInput({ onSubmit }: TaskInputProps) {
 
   const handleSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    validateInput(value, "Task cannot be empty!");
+    if (validateInput(value, "Task cannot be empty!")) return;
 
     onSubmit(value);
     setValue("");

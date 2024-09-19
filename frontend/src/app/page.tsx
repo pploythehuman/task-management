@@ -1,10 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
+
 import { createTask, getTasks, updateTask } from "@/services";
 import { TaskInput, TaskItem } from "@/components";
 import { clipboardIcon } from "@/assets/icons";
-import { useEffect, useState } from "react";
 import { Task } from "@/types";
 
 export default function Home() {
@@ -44,35 +45,27 @@ export default function Home() {
   }, []);
 
   return (
-    <>
-      <div>
-        <h1
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "10px",
-          }}
-        >
-          <Image
-            alt="Right Arrow Icon"
-            src={clipboardIcon}
-            width="30"
-            height="30"
-          />
-          My tasks
-        </h1>
+    <div className="mainContainer">
+      <h1 className="header">
+        <Image
+          alt="Right Arrow Icon"
+          src={clipboardIcon}
+          width="30"
+          height="30"
+        />
+        My tasks
+      </h1>
 
-        <TaskInput onSubmit={handleAddTask} />
-      </div>
-      <div>
-        <div>To do</div>
+      <TaskInput onSubmit={handleAddTask} />
+
+      <p className="sub-header">To Do</p>
+      <div className="tasksContainer">
         {tasks.map((task, index) => {
           return (
             <TaskItem key={index} task={task} onUpdateTask={handleUpdateTask} />
           );
         })}
       </div>
-    </>
+    </div>
   );
 }

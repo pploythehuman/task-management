@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
 
-const BASE_URL = "http://localhost:8800/tasks"
+import { BASE_URL } from '../config';
 
 export async function GET(
   { params }: { params: { id: string } }

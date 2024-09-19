@@ -1,7 +1,5 @@
 "use client";
 
-import "./TaskItem.css";
-
 interface TaskItemButtonProps {
   value: boolean;
   onClick: () => void;

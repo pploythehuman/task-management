@@ -1,8 +1,7 @@
-/* src/components/TaskInput/TaskInput.css */
-
 .taskInputContainer {
   display: flex;
   align-items: center;
+  width: 100%;
   padding: 8px 10px;
   border: 1px solid #ffffff;
   border-radius: 4px;

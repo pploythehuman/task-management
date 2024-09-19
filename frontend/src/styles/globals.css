@@ -1,6 +1,5 @@
 /* styles/globals.css */
 
-/* Define CSS variables for the theme */
 :root {
   --font-family: 'Inter', sans-serif;
   --font-size-base: 16px;
@@ -10,9 +9,14 @@
   --color-text: #ffffff;
 }
 
-/* Apply global styles */
 *, *::before, *::after {
   box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -36,4 +40,38 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 1280px;
+  height: 100vh;
+  max-height: 100vh;
+  padding: 20px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.sub-header {
+  text-align: center;
+}
+
+.tasksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-grow: 1;
+  width: 100%;
+  margin-bottom: 20px;
+  overflow-y: auto;
 }

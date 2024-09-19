@@ -65,37 +65,47 @@ app.put("/tasks/:id", (req, res) => {
   const taskId = req.params.id;
   const { name, complete } = req.body;
 
-  let updateQuery = "UPDATE task SET ";
-  const updateValues = [];
-
-  if (name !== undefined) {
-    updateQuery += "`name` = ?";
-    updateValues.push(name);
-  }
-
-  if (complete !== undefined) {
-    if (updateValues.length > 0) {
-      updateQuery += ", ";
-    }
-    updateQuery += "`complete` = ?";
-    updateValues.push(complete);
-  }
-
-  updateQuery += " WHERE `id` = ?";
-  updateValues.push(taskId);
-
-  db.query(updateQuery, updateValues, (err, result) => {
+  const checkQuery = "SELECT * FROM task WHERE id = ?";
+  db.query(checkQuery, [taskId], (err, data) => {
     if (err) {
       return res.status(500).json({ error: err.message });
     }
+    if (data.length === 0) {
+      return res.status(404).json({ error: "Task not found" });
+    }
 
-    const selectQuery = "SELECT * FROM task WHERE id = ?";
-    db.query(selectQuery, [taskId], (err, data) => {
+    let updateQuery = "UPDATE task SET ";
+    const updateValues = [];
+
+    if (name !== undefined) {
+      updateQuery += "`name` = ?";
+      updateValues.push(name);
+    }
+
+    if (complete !== undefined) {
+      if (updateValues.length > 0) {
+        updateQuery += ", ";
+      }
+      updateQuery += "`complete` = ?";
+      updateValues.push(complete);
+    }
+
+    updateQuery += " WHERE `id` = ?";
+    updateValues.push(taskId);
+
+    db.query(updateQuery, updateValues, (err, result) => {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
 
-      res.status(200).json(data[0]);
+      const selectQuery = "SELECT * FROM task WHERE id = ?";
+      db.query(selectQuery, [taskId], (err, data) => {
+        if (err) {
+          return res.status(500).json({ error: err.message });
+        }
+
+        res.status(200).json(data[0]);
+      });
     });
   });
 });
